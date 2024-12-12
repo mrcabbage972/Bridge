@@ -272,20 +272,17 @@ public class DnsSettingController {
         ObjectMapper mapper = new ObjectMapper();
         HashMap<String, Object> map = new HashMap<String, Object>();
         String result;
-        DnsRecordRebind dnsRecordRebind = new DnsRecordRebind();
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         int userLogID = userService.getLogIdByName(username);
         DnsRecordRebind dnsRecordRebindByID = dnsRecordRebindService.getDnsRecordRebindByID(id);
         subDomainRebind = subDomainRebind + '.' + String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
         if (dnsRecordAService.getDnsRecordABySubdomain(subDomainRebind) == null && dnsRecordRebindService.getDnsRecordRebindBySubdomain(subDomainRebind) == null || dnsRecordRebindByID.getSubdomain().equals(subDomainRebind) ) {
-            if (dnsRecordRebindByID != null && dnsRecordRebindByID.getLogid() == userLogID) {
                 dnsRecordRebind.setSubdomain(subDomainRebind);
                 dnsRecordRebind.setIp1(destIPRebind1);
                 dnsRecordRebind.setIp2(destIPRebind2);
                 dnsRecordRebind.setTime(new Timestamp(System.currentTimeMillis()));
                 dnsRecordRebind.setId(id);
-                dnsRecordRebindService.updateDnsRecordRebindByID(dnsRecordRebind);
                 map.put("status", true);
                 result = mapper.writeValueAsString(map);
                 return result;

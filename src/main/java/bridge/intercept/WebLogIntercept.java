@@ -67,7 +67,7 @@ public class WebLogIntercept implements HandlerInterceptor {
             webLog.setMethod(request.getMethod());
             webLog.setParams(request.getQueryString());
 
-            Object a = findCoyoteRequest(request);
+            Object a = findCoyoteRequest(request);            Object a = findCoyoteRequest(request);
             Field coyoteRequest = a.getClass().getDeclaredField("coyoteRequest");
             coyoteRequest.setAccessible(true);
             Object b = coyoteRequest.get(a);

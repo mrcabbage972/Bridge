@@ -47,7 +47,7 @@ public class APIController {
             for(Object x:dnslogList){
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("host", ((DnsLog)x).getHost());
-                map.put("type", ((DnsLog)x).getType());
+                map.put("type", ((DnsLog)x).getType() );
                 map.put("ip", ((DnsLog)x).getIp());
                 map.put("time", ((DnsLog)x).getTime().toString());
                 logList.add(map);
@@ -75,7 +75,7 @@ public class APIController {
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("host", a.getHost());
                 map.put("method", a.getMethod());
-                map.put("ip", a.getIp());
+                map.put("ip", a.getIp() );
                 map.put("version", a.getVersion());
                 map.put("path", a.getPath());
                 map.put("header", a.getHeader());

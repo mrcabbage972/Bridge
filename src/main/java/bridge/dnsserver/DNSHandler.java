@@ -118,8 +118,6 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
             System.out.println(rebindRecordMap);
         } else {
             List<Byte> byteIP = stringIP2ByteArrayIP(DnslogConfig.ip);
-            answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
-        }
         response.addRecord(DnsSection.QUESTION, dnsQuestion);
         DefaultDnsRawRecord queryAnswer = new DefaultDnsRawRecord(dnsQuestion.name(), DnsRecordType.A, 0, answerIP);
         response.addRecord(DnsSection.ANSWER, queryAnswer);

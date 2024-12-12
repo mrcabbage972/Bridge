@@ -26,7 +26,7 @@ public class APIInfoController {
         String username = securityContext.getAuthentication().getName();
         String apiKey = userService.getapiKeyByName(username);
         int logID = userService.getLogIdByName(username);
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("apiKey", apiKey);
         map.put("logAddress", String.valueOf(logID) + '.' + DnslogConfig.dnslogDomain);
         ModelMap model = new ModelMap();
