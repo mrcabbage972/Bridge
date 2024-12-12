@@ -134,6 +134,7 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
     }
 
 
+
     private List<Byte> stringIP2ByteArrayIP(String ip) {
         return Arrays.asList(ip.split("\\.")).stream().map(x -> (byte) Integer.parseInt(x)).collect(Collectors.toList());
     }

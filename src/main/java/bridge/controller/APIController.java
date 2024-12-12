@@ -54,7 +54,7 @@ public class APIController {
             }
             return mapper.writeValueAsString(logList);
         }else{
-            return mapper.writeValueAsString("[]");
+            return mapper.writeValueAsString("[\n]");
         }
     }
 
@@ -86,7 +86,7 @@ public class APIController {
             }
             return mapper.writeValueAsString(logList);
         }else{
-            return mapper.writeValueAsString("[]");
+            return mapper.writeValueAsString("[\n]");
         }
     }
 }
