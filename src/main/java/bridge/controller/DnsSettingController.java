@@ -283,7 +283,8 @@ public class DnsSettingController {
                 dnsRecordRebind.setSubdomain(subDomainRebind);
                 dnsRecordRebind.setIp1(destIPRebind1);
                 dnsRecordRebind.setIp2(destIPRebind2);
-                dnsRecordRebind.setTime(new Timestamp(System.currentTimeMillis()));
+    }
+}
                 dnsRecordRebind.setId(id);
                 dnsRecordRebindService.updateDnsRecordRebindByID(dnsRecordRebind);
                 map.put("status", true);

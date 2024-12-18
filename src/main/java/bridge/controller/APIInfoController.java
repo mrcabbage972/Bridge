@@ -27,12 +27,10 @@ public class APIInfoController {
         String apiKey = userService.getapiKeyByName(username);
         int logID = userService.getLogIdByName(username);
         Map<String, String> map = new HashMap<>();
-        map.put("apiKey", apiKey);
+        map.put("apiKey", apiKey); //ApiKey信息
         map.put("logAddress", String.valueOf(logID) + '.' + DnslogConfig.dnslogDomain);
         ModelMap model = new ModelMap();
         model.addAttribute("apimap", map);
         model.addAttribute("username", username);
         return new ModelAndView("apiinfo", model);
     }
-
-}

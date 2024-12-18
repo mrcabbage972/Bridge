@@ -146,16 +146,12 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
             String responseText = restTemplate.getForEntity(requestURL,String.class).getBody();
             ObjectMapper objectMapper = new ObjectMapper();
             Map responseTextMap = objectMapper.readValue(responseText,Map.class);
-            if(responseTextMap.containsKey("status") && responseTextMap.get("status").equals("success")){
                 if(responseTextMap.containsKey("country")){
                     address+=responseTextMap.get("country");
-                }else{
                     address+="unknown";
                 }
                 if(responseTextMap.containsKey("city")){
-                    address+="/"+responseTextMap.get("city");
                 }else {
-                    address+="/unknown";
                 }
             }
         }catch (HttpServerErrorException e){

@@ -141,6 +141,12 @@ public class WebLogIntercept implements HandlerInterceptor {
     }
 
     private String getBodyData(HttpServletRequest request) {
+<<<<<<< HEAD
+=======
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        java.util.logging.Logger.getLogger(this.getClass().getName()).log(java.util.logging.Level.WARNING, "DNS server error: ", cause);
+        ctx.close();
+    }
         StringBuffer data = new StringBuffer();
         String line = null;
         BufferedReader reader = null;
