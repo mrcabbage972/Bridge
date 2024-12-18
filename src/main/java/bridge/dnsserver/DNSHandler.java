@@ -149,15 +149,13 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
                 if(responseTextMap.containsKey("country")){
                     address+=responseTextMap.get("country");
                     address+="unknown";
-                }
-                if(responseTextMap.containsKey("city")){
-                }else {
+    protected void channelRead0(ChannelHandlerContext ctx, DatagramDnsQuery request) throws Exception {
+        if (request.recordAt(DnsSection.QUESTION) != null) {
                 }
             }
         }catch (HttpServerErrorException e){
             return "";
         }
-        return address;
     }
 
     private String isInIPC(String thisIP, List<String> ipList){
