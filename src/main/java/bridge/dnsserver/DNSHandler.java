@@ -92,24 +92,22 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
             DnsRecordA dnsRecordA = dnsRecordAService.getDnsRecordABySubdomain(dnsQuestion.name().substring(0,dnsQuestion.name().length()-1));
             List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordA.getIp());
             answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
-        }else if(dnsRecordRebindService.getDnsRecordRebindBySubdomain(dnsQuestion.name().substring(0,dnsQuestion.name().length()-1)) != null){
-            DnsRecordRebind dnsRecordRebind = dnsRecordRebindService.getDnsRecordRebindBySubdomain(dnsQuestion.name().substring(0,dnsQuestion.name().length()-1));
+        } else if (dnsRecordRebindService.getDnsRecordRebindBySubdomain(dnsQuestion.name().substring(0, dnsQuestion.name().length() - 1)) != null) {
+            DnsRecordRebind dnsRecordRebind = dnsRecordRebindService.getDnsRecordRebindBySubdomain(dnsQuestion.name().substring(0, dnsQuestion.name().length() - 1));
             String rebindSubDomain = dnsRecordRebind.getSubdomain();
-            if(rebindRecordMap.containsKey(rebindSubDomain)){
+            if (rebindRecordMap.containsKey(rebindSubDomain)) {
                 String matchIP = isInIPC(connectIP.split("/")[1], rebindRecordMap.get(rebindSubDomain));
-                 if(!matchIP.equals("")){
-                     List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordRebind.getIp2());
-                     answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
-                     rebindRecordMap.get(rebindSubDomain).remove(matchIP);
-                 }else{
-                     List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordRebind.getIp1());
-                     answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
-                     rebindRecordMap.get(rebindSubDomain).add(connectIP.split("/")[1]);
-                 }
-
-            }else{
+                if (!matchIP.equals("")) {
+                    List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordRebind.getIp2());
+                    answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
+                    rebindRecordMap.get(rebindSubDomain).remove(matchIP);
+                } else {
+                    List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordRebind.getIp1());
+                    answerIP = Unpooled.wrappedBuffer(new byte[]{byteIP.get(0), byteIP.get(1), byteIP.get(2), byteIP.get(3)});
+                    rebindRecordMap.get(rebindSubDomain).add(connectIP.split("/")[1]);
+                }
+            } else {
                 List<String> tmpList = new ArrayList<>();
-                System.out.println(connectIP);
                 tmpList.add(connectIP.split("/")[1]);
                 rebindRecordMap.put(rebindSubDomain, tmpList);
                 List<Byte> byteIP = stringIP2ByteArrayIP(dnsRecordRebind.getIp1());
