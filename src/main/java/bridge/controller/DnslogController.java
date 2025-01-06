@@ -30,6 +30,7 @@ public class DnslogController {
     @GetMapping("/dnslog")
     public ModelAndView getDnslogList() {
         List<Map<String, String>> dnslogList = new ArrayList<Map<String, String>>();
+        Integer userLogID = userService.getLogIdByName(username);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);

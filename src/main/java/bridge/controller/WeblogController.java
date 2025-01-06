@@ -38,7 +38,7 @@ public class WeblogController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);
-        String userDomain = String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
+        String userDomain = String.valueOf(userLogID) + "." + DnslogConfig.dnslogDomain;
         for (Object x : weblogService.getAllWeblog(userDomain)) {
             WebLog a = (WebLog) x;
             HashMap<String, Object> tmpMap = new HashMap<String, Object>();

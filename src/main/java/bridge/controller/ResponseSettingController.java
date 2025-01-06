@@ -36,6 +36,7 @@ public class ResponseSettingController {
     public ModelAndView getResponseSetting() throws JsonProcessingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<Map<String, Object>> responseList = new ArrayList<Map<String, Object>>();
+        Integer userLogID = userService.getLogIdByName(username);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);
@@ -46,6 +47,7 @@ public class ResponseSettingController {
             tmpMap.put("id", a.getId());
             tmpMap.put("host", a.getSubDomain());
             tmpMap.put("subDomain", a.getSubDomain().replace('.'+String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain,""));
+            tmpMap.put("subDomain", a.getSubDomain().replace(\'.\'+userLogID + \'.\' + DnslogConfig.dnslogDomain,""));
             tmpMap.put("responseType", a.getResponseType());
             tmpMap.put("statusCode", String.valueOf(a.getStatusCode()));
             if(a.getResponseBody() == null || a.getResponseBody().equals("")){

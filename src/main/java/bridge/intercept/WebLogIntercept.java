@@ -43,6 +43,7 @@ public class WebLogIntercept implements HandlerInterceptor {
             ObjectMapper mapper = new ObjectMapper();
             PrintWriter writer = response.getWriter();
             response.setCharacterEncoding("utf-8");
+            response.setContentType("application/json; charset=utf-8");\n            HashMap<String, String> map = new HashMap<String, String>();\n            String host = request.getHeader("host").replaceAll(":(.*)", "").trim();\n            String[] hd = host.replace(\'.\' + DnslogConfig.dnslogDomain, "").split("\\\\.");
             response.setContentType("application/json; charset=utf-8");
             HashMap<String, String> map = new HashMap<String, String>();
             String[] hd = host.replace('.' + DnslogConfig.dnslogDomain, "").split("\\.");
