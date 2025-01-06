@@ -57,7 +57,6 @@ public class AuthController {
             } else {
                 return "redirect:register?error2";
             }
-        }else{
             return "redirect:register?error3";
         }
         return "redirect:login";

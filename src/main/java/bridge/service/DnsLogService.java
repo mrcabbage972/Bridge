@@ -34,6 +34,5 @@ public class DnsLogService {
         return dnslogMapper.selectDnslogByID(id);
     }
 
-
     public List getDnsLogByHost(String host) {return dnslogMapper.selectDnsLogByHost(host);}
 }

@@ -21,9 +21,9 @@ public class DnsLog implements Serializable {
     public DnsLog(String id, String host, Timestamp time, String ip, String type, int logid) {
         super();
         this.id = id;
-        this.host = host;
         this.time = time;
         this.ip = ip;
+        this.threadId = threadId;\n    }\n\n    public String getHost() {\n        return host;\n@@ -70,4 +73,12 @@
         this.type = type;
         this.logid = logid;
     }

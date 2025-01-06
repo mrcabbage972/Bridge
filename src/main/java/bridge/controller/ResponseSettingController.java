@@ -39,27 +39,25 @@ public class ResponseSettingController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);
-        String userDomain = String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
+        String userDomain = String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain;
         for (Object x : responseService.getAllResponse(userDomain)) {
             Response a = (Response) x;
             HashMap<String, Object> tmpMap = new HashMap<String, Object>();
             tmpMap.put("id", a.getId());
             tmpMap.put("host", a.getSubDomain());
-            tmpMap.put("subDomain", a.getSubDomain().replace('.'+String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain,""));
-            tmpMap.put("responseType", a.getResponseType());
+            tmpMap.put("subDomain", a.getSubDomain().replace(\'.\'+String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain,""));\n            tmpMap.put("responseType", a.getResponseType());
             tmpMap.put("statusCode", String.valueOf(a.getStatusCode()));
             if(a.getResponseBody() == null || a.getResponseBody().equals("")){
                 tmpMap.put("responseBody","");
             }else{
                 tmpMap.put("responseBody",a.getResponseBody());
-            }
-            if(a.getHeaders() == null){
+        subDomain = subDomain + \'.\' + String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain;
                 tmpMap.put("headers","[]");
             }else{
                 ArrayList headerList = mapper.readValue(a.getHeaders(),ArrayList.class);
                 tmpMap.put("headers",headerList);
             }if(a.getRedirectURL() == null){
-                tmpMap.put("redirectURL","");
+        subDomain = subDomain + \'.\' + String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain;
             }else{
                 tmpMap.put("redirectURL",a.getRedirectURL());
             }

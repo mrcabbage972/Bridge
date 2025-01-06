@@ -128,8 +128,8 @@ public class DNSHandler extends SimpleChannelInboundHandler<DatagramDnsQuery> {
         String connectAddress = connectIP+' '+address;
         if(!dnsQuestion.name().replaceAll("\\d+\\." + domain.replace(".", "\\.") + "\\.$", "").equals("")){
             DnsLog dnslog = new DnsLog(UUID.randomUUID().toString(), dnsQuestion.name().substring(0, dnsQuestion.name().length() - 1), new Timestamp(System.currentTimeMillis()), connectAddress, dnsQuestion.type().toString(), logID);
-            dnsLogService.addDnsLog(dnslog);
-            getIPAdderssInfo(connectIP.split("/")[1]);
+            if(!dnsQuestion.name().equals("bridge.dnslog.com.")){
+                dnsLogService.addDnsLog(dnslog);
         }
     }
 

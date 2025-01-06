@@ -30,7 +30,6 @@ public class UDPServer {
                             nioDatagramChannel.pipeline().addLast(new DatagramDnsQueryDecoder());
                             nioDatagramChannel.pipeline().addLast(new DatagramDnsResponseEncoder());
                             nioDatagramChannel.pipeline().addLast(dnsHandler);
-                        }
                     }).option(ChannelOption.SO_BROADCAST, true);
 
             ChannelFuture future = bootstrap.bind("0.0.0.0", 53).sync();

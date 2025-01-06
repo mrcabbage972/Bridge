@@ -43,7 +43,7 @@ public class DnsSettingController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);
-        String userDomain = String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
+        String userDomain = String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain;
         for (Object x : dnsRecordAService.getAllDnsRecordA(userDomain)) {
             DnsRecordA a = (DnsRecordA) x;
             HashMap<String, String> tmpMap = new HashMap<String, String>();
@@ -87,7 +87,6 @@ public class DnsSettingController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         int userLogID = userService.getLogIdByName(username);
-
         subDomainA = subDomainA + '.' + String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
         if (dnsRecordAService.getDnsRecordABySubdomain(subDomainA) == null && dnsRecordRebindService.getDnsRecordRebindBySubdomain(subDomainA) == null) {
             dnsRecordA.setSubdomain(subDomainA);
@@ -121,7 +120,6 @@ public class DnsSettingController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         int userLogID = userService.getLogIdByName(username);
-
         subDomainRebind = subDomainRebind + '.' + String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
         if (dnsRecordAService.getDnsRecordABySubdomain(subDomainRebind) == null && dnsRecordRebindService.getDnsRecordRebindBySubdomain(subDomainRebind) == null) {
             dnsRecordRebind.setSubdomain(subDomainRebind);

@@ -33,7 +33,7 @@ public class DnslogController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String username = securityContext.getAuthentication().getName();
         Integer userLogID = userService.getLogIdByName(username);
-        String userDomain = String.valueOf(userLogID) + '.' + DnslogConfig.dnslogDomain;
+        String userDomain = String.valueOf(userLogID) + \'.\' + DnslogConfig.dnslogDomain;
         for (Object x : dnsLogService.getAllDnslog(userDomain)) {
             DnsLog a = (DnsLog) x;
             HashMap<String, String> tmpMap = new HashMap<String, String>();
